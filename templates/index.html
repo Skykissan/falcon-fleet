@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🌿 Plant Disease Detector</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="icon" href="https://img.icons8.com/color/48/plant-under-microscope.png" type="image/png">
+  <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+  <meta name="theme-color" content="#4caf50">
+  <link rel="icon" href="{{ url_for('static', filename='icon.png') }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+  <h1> SKY KISSAN</h1>
+  <h2>🌿 Plant Disease Identification</h2>
+  <div class="container">
+    <div id="webcam-label">📹 Live Camera Feed</div>
+    <video id="webcam" autoplay playsinline></video>
+
+    <button onclick="captureImage()">📸 Capture Image</button>
+
+    <div id="preview-container" style="display: none;">
+      <div id="capture-label">🖼️ Captured Image Preview</div>
+      <img id="preview" alt="Captured Image" />
+    </div>
+
+    <canvas id="canvas" width="224" height="224"></canvas>
+    <button onclick="submitImage()">🔍 Predict Disease</button>
+
+    <div id="result"></div>
+  </div>
+
+  <footer>
+    <p>🌱 Powered by FALCON FLEET || Fly Smart!Farm Smarter!</p>
+  </footer>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/static/service-worker.js')
+      .then(reg => console.log('Service Worker Registered'))
+      .catch(err => console.error('Service Worker Failed', err));
+  }
+  </script>
+
+</body>
+</html>
